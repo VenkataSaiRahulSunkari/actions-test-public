@@ -1,5 +1,8 @@
 name: Deployment
 
+env:
+  TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
+
 on:
   push:
     branches:
@@ -8,7 +11,11 @@ on:
 jobs:
   deployment:
     runs-on: ubuntu-latest
-    environment: prod
+    strategy:
+      max-parallel: 1
+      matrix:
+        environment: [dev, prod]
+    environment: ${{ matrix.environment }}
     steps:
       - name: deploy
         run: echo "$TF_WORKSPACE"
