@@ -14,8 +14,8 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        environment: ${{ env.infra_envs }}
-    environment: [dev, qa, stg, prod]
+        environment: [dev, qa, stg, prod]
+    environment: ${{ matrix.environment }}
     steps:
       - name: deploy
         run: sleep 35 && echo "$TF_WORKSPACE"
