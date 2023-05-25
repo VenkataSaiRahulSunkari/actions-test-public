@@ -14,7 +14,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        environment: [dev, qa, stg, prod]
+        environment: [dev, qa, prod]
     environment: ${{ matrix.environment }}
     steps:
       - name: deploy
