@@ -2,7 +2,6 @@ name: Deployment
 
 env:
   TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
-  infra_envs: [dev, qa, stg, prod]
 
 on:
   push:
@@ -16,7 +15,7 @@ jobs:
       max-parallel: 1
       matrix:
         environment: ${{ env.infra_envs }}
-    environment: ${{ matrix.environment }}
+    environment: [dev, qa, stg, prod]
     steps:
       - name: deploy
         run: sleep 35 && echo "$TF_WORKSPACE"
