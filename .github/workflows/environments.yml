@@ -15,7 +15,9 @@ jobs:
       max-parallel: 1
       matrix:
         environment: [dev, qa, prod]
+        include:
+          - environment: qa
     environment: ${{ matrix.environment }}
     steps:
       - name: deploy
-        run: sleep 35 && echo "$TF_WORKSPACE"
+        run: sleep 15 && echo "$TF_WORKSPACE"
