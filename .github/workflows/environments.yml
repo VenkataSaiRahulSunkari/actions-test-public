@@ -17,7 +17,8 @@ jobs:
         #   - environment: dev
         #   - environment: qa
     environment: ${{ matrix.environment }}
-    if: ${{ github.ref_name == 'develop' && matrix.environment == 'dev' }}
+    # if: ${{ github.ref_name == 'develop' && matrix.environment == 'dev' }}
     steps:
       - name: deploy
+        if: ${{ github.ref_name == 'develop' && matrix.environment == 'dev' }}
         run: sleep 15 && echo "$TF_WORKSPACE"
