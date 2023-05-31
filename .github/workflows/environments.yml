@@ -15,8 +15,8 @@ jobs:
       max-parallel: 1
       matrix:
         environment: [dev, qa, prod]
-        include:
-          - environment: qa
+        exclude:
+          - environment: [dev, qa]
     environment: ${{ matrix.environment }}
     steps:
       - name: deploy
