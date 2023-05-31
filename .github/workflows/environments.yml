@@ -3,10 +3,7 @@ name: Deployment
 env:
   TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
 
-on:
-  push:
-    branches:
-      - '**'
+on: workflow_call
 
 jobs:
   deployment:
@@ -14,10 +11,13 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        environment: [dev, qa, prod]
-        exclude:
-          - environment: [dev, qa]
+        environment: [dev]
+        # environment: [dev, qa, prod]
+        # exclude:
+        #   - environment: dev
+        #   - environment: qa
     environment: ${{ matrix.environment }}
+    if: ${{ github.ref_name == 'develop' && matrix.environment == 'dev' }}
     steps:
       - name: deploy
         run: sleep 15 && echo "$TF_WORKSPACE"

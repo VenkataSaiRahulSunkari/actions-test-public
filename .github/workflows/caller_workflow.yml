@@ -1,0 +1,12 @@
+name: Deployment
+
+env:
+  TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
+
+on:
+  push:
+    branches: ['**']
+
+jobs:
+  caller-deployment:
+    uses: ./.github/workflows/environments.yml
