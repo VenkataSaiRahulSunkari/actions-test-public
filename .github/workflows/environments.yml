@@ -3,7 +3,11 @@ name: Deployment
 env:
   TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
 
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      environments:
+        required: true
 
 jobs:
   deployment:
@@ -11,7 +15,8 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        environment: [dev]
+        environment: ${{ inputs.environments }}
+        # environment: [dev]
         # environment: [dev, qa, prod]
         # exclude:
         #   - environment: dev

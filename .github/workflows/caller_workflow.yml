@@ -10,3 +10,5 @@ on:
 jobs:
   caller-deployment:
     uses: ./.github/workflows/environments.yml
+    with:
+      environments: fromJSON('["dev", "qa"]')
