@@ -23,5 +23,5 @@ jobs:
     steps:
       - name: deploy
         run: echo ${{ inputs.environment }}
-      - run: cat ${{ inputs.environment }}/sample.txt
+      - run: cat ./${{ inputs.environment }}/sample.txt
       - run: echo $environment
