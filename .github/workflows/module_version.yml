@@ -1,0 +1,27 @@
+name: Module Version
+
+env:
+  TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
+  environment: ${{ inputs.environment }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        type: choice
+        options:
+        - dev
+        - qa
+        - prod
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: deploy
+        run: echo ${{ inputs.environment }}
+      - run: cat ${{ inputs.environment }}/sample.txt
+      - run: echo $environment
