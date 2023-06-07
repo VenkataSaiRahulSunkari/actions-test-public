@@ -1,0 +1,17 @@
+name: File Changed
+
+on: push
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Get Changed Files
+        id: changed_files
+        run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})"
+      
+      - name: Display Changed Files
+        run: echo "Changed Files: ${{ steps.changed_files.outputs.files }}"
